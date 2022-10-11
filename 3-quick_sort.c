@@ -32,11 +32,22 @@ void _qsort(int *array, int head, int tail, size_t size)
 	{
 		if (array[i] < array[tail])
 		{
-			tmp = array[i];
-			array[i] = array[idx];
-			array[idx] = tmp;
-			print_array(array, size);
+			if (i != idx)
+			{
+				tmp = array[i];
+				array[i] = array[idx];
+				array[idx] = tmp;
+				print_array(array, size);
+			}
+			idx++;
 		}
+	}
+	if (idx != tail && array[idx] != array[tail])
+	{
+		tmp = array[idx];
+		array[idx] = array[tail];
+		array[tail] = tmp;
+		print_array(array, size);
 	}
 	_qsort(array, head, idx - 1, size);
 	_qsort(array, idx + 1, tail, size);
